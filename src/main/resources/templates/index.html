@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Water Station Graphics Interface</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <h1 style="align-items: center;  display: flex; justify-content: center;">Water Station Control</h1>
+        </div>
+        <!-- Row  -->
+        <div class="row">
+            <div class="col-md-4">
+                <h3 th:text="${Station1Name}"></h3>
+                <img th:src="${myModel1.imagePath}" height="200px" width="200px">
+                <br>
+                Status : <p th:text="${Station1Status}" style="display:inline;"></p>
+                <br>
+                Inlet Pressure : <p th:text="${Station1Inlet}" style="display:inline;"></p>
+                <br>
+                Outlet Pressure : <p th:text="${Station1Outlet}" style="display:inline;"></p>
+
+            </div>
+            <div class="col-md-4">
+                <h3 th:text="${Station2Name}"></h3>
+                <img th:src="${myModel2.imagePath}" height="200px" width="200px">
+                <br>
+                Status : <p th:text="${Station2Status}" style="display:inline;"></p>
+                <br>
+                Inlet Pressure : <p th:text="${Station2Inlet}" style="display:inline;"></p>
+                <br>
+                Outlet Pressure : <p th:text="${Station2Outlet}" style="display:inline;"></p>
+            </div>
+
+            <div class="col-md-4">
+                <h3 th:text="${Station3Name}"></h3>
+                <img th:src="${myModel3.imagePath}" height="200px" width="200px">
+                <br>
+                Status : <p th:text="${Station3Status}" style="display:inline;"></p>
+                <br>
+                Inlet Pressure : <p th:text="${Station3Inlet}" style="display:inline;"></p>
+                <br>
+                Outlet Pressure : <p th:text="${Station3Outlet}" style="display:inline;"></p>
+            </div>
+        </div>
+        
+
+
+    </body>
+</html>
