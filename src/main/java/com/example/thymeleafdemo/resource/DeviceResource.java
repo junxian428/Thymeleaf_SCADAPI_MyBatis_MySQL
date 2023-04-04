@@ -51,12 +51,44 @@ public class DeviceResource {
    public String getDataBasedStation(@PathVariable("parameter") String parameter){
        //System.out.println(parameter);
        try{
-        Devices device1 = new Devices();
-        device1 = deviceMapper.findLatestByStation(parameter);
+        Devices SuctionTank = new Devices();
+        //device1 = deviceMapper.findLatestByStation(parameter);
+        SuctionTank = deviceMapper.findSuctionTank(parameter);
+        Devices ServiceTank = new Devices();
+        ServiceTank = deviceMapper.findServiceTank(parameter);
+        Devices Pump1 = new Devices();
+        Pump1 = deviceMapper.findPump1(parameter);
+        Devices Pump2 = new Devices();
+        Pump2 = deviceMapper.findPump2(parameter);
+        Devices Pump3 = new Devices();
+        Pump3 = deviceMapper.findPump3(parameter);
+        Devices Pump4 = new Devices();
+        Pump3 = deviceMapper.findPump4(parameter);
+
+
+        return "[{\"Station\" : \""  + parameter + "\", \"Date Time\" : \"" + SuctionTank.getDatetime() + "\" , \"Status\" : \""  + SuctionTank.getStatus() 
+        + "\" , \"Level\" : " + SuctionTank.getLevel() + " , \"Inlet Pressure\" : " + SuctionTank.getInletpressure() + 
+        " , \"Outlet Pressure\" : " + SuctionTank.getOutletpressure() 
+        + "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + ServiceTank.getDatetime() + "\" , \"Status\" : \""  + ServiceTank.getStatus() 
+        + "\" , \"Level\" : " + ServiceTank.getLevel() + " , \"Inlet Pressure\" : " + ServiceTank.getInletpressure() + 
+        " , \"Outlet Pressure\" : " + ServiceTank.getOutletpressure() + 
+        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump1.getDatetime() + "\" , \"Status\" : \""  + Pump1.getStatus() 
+        + "\" , \"Level\" : " + Pump1.getLevel() + " , \"Inlet Pressure\" : " + Pump1.getInletpressure() + 
+        " , \"Outlet Pressure\" : " + Pump1.getOutletpressure() 
+        +  "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump2.getDatetime() + "\" , \"Status\" : \""  + Pump2.getStatus() 
+        + "\" , \"Level\" : " + Pump2.getLevel() + " , \"Inlet Pressure\" : " + Pump2.getInletpressure() + 
+        " , \"Outlet Pressure\" : " + Pump2.getOutletpressure()  + 
+        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump3.getDatetime() + "\" , \"Status\" : \""  + Pump3.getStatus() 
+        + "\" , \"Level\" : " + Pump3.getLevel() + " , \"Inlet Pressure\" : " + Pump3.getInletpressure() + 
+        " , \"Outlet Pressure\" : " + Pump3.getOutletpressure()  +
+        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump4.getDatetime() + "\" , \"Status\" : \""  + Pump4.getStatus() 
+        + "\" , \"Level\" : " + Pump4.getLevel() + " , \"Inlet Pressure\" : " + Pump4.getInletpressure() + 
+        " , \"Outlet Pressure\" : " + Pump4.getOutletpressure()  +
+        "}]";
         // System.out.println(device1.getDatetime() + " " + device1.getDevice() + ":" + device1.getOutletpressure());
-        return "{\"station\": \"" + device1.getStation() + "\",\n\"DateTime\": \""+ device1.getDatetime() + "\",\n" + "\"device\" :" + device1.getDevice() + "\", \n \"status\": \""
-         + device1.getStatus() + "\", \"level\": \"" + device1.getLevel() + "\", \"inlet_pressure\":  \"" + device1.getInletpressure() + "\", \"outlet_pressure\" : \"" 
-         + device1.getOutletpressure() + "}";
+        //return "{\"station\": \"" + device1.getStation() + "\",\n\"DateTime\": \""+ device1.getDatetime() + "\",\n" + "\"device\" :" + device1.getDevice() + "\", \n \"status\": \""
+        // + device1.getStatus() + "\", \"level\": \"" + device1.getLevel() + "\", \"inlet_pressure\":  \"" + device1.getInletpressure() + "\", \"outlet_pressure\" : \"" 
+        // + device1.getOutletpressure() + "}";
     }catch (Exception e) {
         //System.out.println(e);
         return "Error Caused by " + e;
@@ -94,6 +126,10 @@ int level = (int) jsonMap.get("level");
 double inletpressure = (double) jsonMap.get("inletpressure");
 double outletpressure = (double) jsonMap.get("outletpressure");
 System.out.println(station + " " + device2 + " " + status +  " " + Integer.toString(level)+ " " + Double.toString(inletpressure) + " " + Double.toString(outletpressure) );
+
+
+
+
             //deviceDataService.saveDeviceData(formData);
             LocalDateTime localDateTime = LocalDateTime.now();
             // void saveDeviceData

@@ -28,6 +28,24 @@ public interface DeviceMapper {
     @Select("SELECT * FROM devices WHERE station = #{station} ORDER BY id DESC LIMIT 1")
     Devices findLatestByStation(@Param("station") String station);
 
+    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Suction Tank' ORDER BY id DESC LIMIT 1")
+    Devices findSuctionTank(@Param("station") String station);
+
+    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Service Tank' ORDER BY id DESC LIMIT 1")
+    Devices findServiceTank(@Param("station") String station);
+
+    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Pump 1' ORDER BY id DESC LIMIT 1")
+    Devices findPump1(@Param("station") String station);
+
+    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Pump 2' ORDER BY id DESC LIMIT 1")
+    Devices findPump2(@Param("station") String station);
+
+    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Pump 3' ORDER BY id DESC LIMIT 1")
+    Devices findPump3(@Param("station") String station);
+
+    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Pump 4' ORDER BY id DESC LIMIT 1")
+    Devices findPump4(@Param("station") String station);
+
     //private Integer id;
     //private Timestamp datetime;
     //private String device;
