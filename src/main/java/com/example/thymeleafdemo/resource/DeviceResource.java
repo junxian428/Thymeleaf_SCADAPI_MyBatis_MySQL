@@ -66,7 +66,7 @@ public class DeviceResource {
         Devices Pump3 = new Devices();
         Pump3 = deviceMapper.findPump3(parameter);
         Devices Pump4 = new Devices();
-        Pump3 = deviceMapper.findPump4(parameter);
+        Pump4 = deviceMapper.findPump4(parameter);
 
         return "[{\"Station\" : \""  + parameter + "\", \"Date Time\" : \"" + SuctionTank.getDatetime()  + "\", \"Device\" : \"" + SuctionTank.getDevice() + "\" , \"Status\" : \""  + SuctionTank.getStatus() 
         + "\" , \"Level\" : " + SuctionTank.getLevel() + " , \"Inlet Pressure\" : " + SuctionTank.getInletpressure() + 
