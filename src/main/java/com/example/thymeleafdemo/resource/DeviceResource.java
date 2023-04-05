@@ -71,19 +71,19 @@ public class DeviceResource {
         return "[{\"Station\" : \""  + parameter + "\", \"Date Time\" : \"" + SuctionTank.getDatetime()  + "\", \"Device\" : \"" + SuctionTank.getDevice() + "\" , \"Status\" : \""  + SuctionTank.getStatus() 
         + "\" , \"Level\" : " + SuctionTank.getLevel() + " , \"Inlet Pressure\" : " + SuctionTank.getInletpressure() + 
         " , \"Outlet Pressure\" : " + SuctionTank.getOutletpressure() 
-        + "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + ServiceTank.getDatetime()  + "\", \"Device\" : \"" + ServiceTank.getDevice()  + "\" , \"Status\" : \""  + ServiceTank.getStatus() 
+        + "}, {\"Station\" : \"" + parameter +  "\", \"Date Time\" : \"" + ServiceTank.getDatetime()  + "\", \"Device\" : \"" + ServiceTank.getDevice()  + "\" , \"Status\" : \""  + ServiceTank.getStatus() 
         + "\" , \"Level\" : " + ServiceTank.getLevel() + " , \"Inlet Pressure\" : " + ServiceTank.getInletpressure() + 
         " , \"Outlet Pressure\" : " + ServiceTank.getOutletpressure() + 
-        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump1.getDatetime()  + "\", \"Device\" : \"" + Pump1.getDevice() + "\" , \"Status\" : \""  + Pump1.getStatus() 
+        "}, {\"Station\" : \"" + parameter +  "\", \"Date Time\" : \"" + Pump1.getDatetime()  + "\", \"Device\" : \"" + Pump1.getDevice() + "\" , \"Status\" : \""  + Pump1.getStatus() 
         + "\" , \"Level\" : " + Pump1.getLevel() + " , \"Inlet Pressure\" : " + Pump1.getInletpressure() + 
         " , \"Outlet Pressure\" : " + Pump1.getOutletpressure() 
-        +  "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump2.getDatetime()  + "\", \"Device\" : \"" + Pump2.getDevice()  + "\" , \"Status\" : \""  + Pump2.getStatus() 
+        +  "}, {\"Station\" : \"" + parameter +  "\", \"Date Time\" : \"" + Pump2.getDatetime()  + "\", \"Device\" : \"" + Pump2.getDevice()  + "\" , \"Status\" : \""  + Pump2.getStatus() 
         + "\" , \"Level\" : " + Pump2.getLevel() + " , \"Inlet Pressure\" : " + Pump2.getInletpressure() + 
         " , \"Outlet Pressure\" : " + Pump2.getOutletpressure()  + 
-        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump3.getDatetime()  + "\", \"Device\" : \"" + Pump3.getDevice()  + "\" , \"Status\" : \""  + Pump3.getStatus() 
+        "}, {\"Station\" : \"" + parameter +  "\", \"Date Time\" : \"" + Pump3.getDatetime()  + "\", \"Device\" : \"" + Pump3.getDevice()  + "\" , \"Status\" : \""  + Pump3.getStatus() 
         + "\" , \"Level\" : " + Pump3.getLevel() + " , \"Inlet Pressure\" : " + Pump3.getInletpressure() + 
         " , \"Outlet Pressure\" : " + Pump3.getOutletpressure()  +
-        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump4.getDatetime()  + "\", \"Device\" : \"" + Pump4.getDevice()  + "\" , \"Status\" : \""  + Pump4.getStatus() 
+        "}, {\"Station\" : \"" + parameter +  "\", \"Date Time\" : \"" + Pump4.getDatetime()  + "\", \"Device\" : \"" + Pump4.getDevice()  + "\" , \"Status\" : \""  + Pump4.getStatus() 
         + "\" , \"Level\" : " + Pump4.getLevel() + " , \"Inlet Pressure\" : " + Pump4.getInletpressure() + 
         " , \"Outlet Pressure\" : " + Pump4.getOutletpressure()  +
         "}]";
