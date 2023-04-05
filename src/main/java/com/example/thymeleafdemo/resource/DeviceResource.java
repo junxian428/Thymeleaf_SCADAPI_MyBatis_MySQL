@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.thymeleafdemo.mapper.DeviceMapper;
 import com.example.thymeleafdemo.model.Devices;
+import com.example.thymeleafdemo.model.OneRowDevices;
 import com.example.thymeleafdemo.service.DeviceService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,10 +41,10 @@ public class DeviceResource {
         this.deviceMapper = deviceMapper;
     }
 
-    @GetMapping("/all")
-    public List<Devices> getAll() {
-        return deviceMapper.findAll();
-    }
+    //@GetMapping("/all")
+    //public List<Devices> getAll() {
+    //    return deviceMapper.findAll();
+    //}
 
   //  @PostMapping("/addDeviceData")
    // public void addDeviceData(@RequestBody Devices devices) {
@@ -235,7 +236,7 @@ System.out.println(station + " " + device2 + " " + status +  " " + Integer.toStr
                             deviceMapper.saveDeviceData(name, datetime, device, status, level, inletpressure, outletpressure);
 
                         }catch (Exception e){
-                            System.out.println(e);
+                             System.out.println(e);
                             return  e + " . SQL insert problem. Check SQL syntax";
                         }
                     }
@@ -258,6 +259,35 @@ System.out.println(station + " " + device2 + " " + status +  " " + Integer.toStr
 
 
     }
+    /*
+     * 
+     * {"station1":"Station 1","datetime1":"2023-04-05T01:42:06.000+00:00",
+     * "device1":"Suction Tank","status1":"Ok","level1":50,"inletpressure1":10.0,"outletpressure1":100.0,
+     * "station2":"Station 1","datetime2":"2023-04-05T01:42:06.000+00:00","device2":"Service Tank","status2":"Ok",
+     * "level2":50,"inletpressure2":50.0,"outletpressure2":50.0,"station3":"Station 1","datetime3":"2023-04-05T01:42:06.000+00:00",
+     * "device3":"Pump 1","status3":"Bad","level3":100,"inletpressure3":100.0,"outletpressure3":100.0,
+     * "station4":"Station 1","datetime4":"2023-04-05T01:42:06.000+00:00","device4":"Pump 2","status4":"Ok",
+     * "level4":80,"inletpressure4":120.0,"outletpressure4":78.0,"station5":"Station 1","datetime5":"2023-04-05T01:42:06.000+00:00",
+     * "device5":"Pump 3","status5":"Ok","level5":100,"inletpressure5":100.0,"outletpressure5":78.0,"station6":"Station 1",
+     * "datetime6":"2023-04-05T01:42:06.000+00:00","device6":"Pump 4","status6":"Ok","level6":90,"inletpressure6":33.33,"outletpressure6":56.0}
+     */
+
+     /*Requirement:
+      * [{"Station" : "Station 1", "Date Time" : "2023-04-05 09:32:34.0", "Device" : "Suction Tank" , "Status" : "Ok" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : Station 1", "Date Time" : "2023-04-05 09:32:34.0", "Device" : "Service Tank" , "Status" : "Ok" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:27.0", "Device" : "Pump 1" , "Status" : "Ok" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:31.0", "Device" : "Pump 2" , "Status" : "Bad" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:38.0", "Device" : "Pump 4" , "Status" : "Ok" , "Level" : 0 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : Station 1", "Date Time" : "null", "Device" : "null" , "Status" : "null" , "Level" : 0 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}]
+
+      */
+
+    @GetMapping("row/{parameter}")
+    public OneRowDevices getDataBasedRow(@PathVariable("parameter") String parameter){
+       return deviceMapper.findOneRowByStation(parameter);
+   
+    }
+    // In order to make requirement need to parse one by one:
+  
+
+
+
+
 
 
 }

@@ -16,6 +16,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.util.MultiValueMap;
 
 import com.example.thymeleafdemo.model.Devices;
+import com.example.thymeleafdemo.model.OneRowDevices;
 
 @Mapper
 public interface DeviceMapper {
@@ -28,16 +29,16 @@ public interface DeviceMapper {
     @Select("SELECT * FROM devices WHERE station = #{station} ORDER BY id DESC LIMIT 1")
     Devices findLatestByStation(@Param("station") String station);
 
-    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Suction Tank' ORDER BY id DESC LIMIT 1")
+    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Suction Tank' ORDER BY datetime DESC LIMIT 1")
     Devices findSuctionTank(@Param("station") String station);
 
-    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Service Tank' ORDER BY id DESC LIMIT 1")
+    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Service Tank' ORDER BY datetime DESC LIMIT 1")
     Devices findServiceTank(@Param("station") String station);
 
-    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Pump 1' ORDER BY id DESC LIMIT 1")
+    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Pump 1' ORDER BY datetime DESC LIMIT 1")
     Devices findPump1(@Param("station") String station);
 
-    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Pump 2' ORDER BY id DESC LIMIT 1")
+    @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Pump 2' ORDER BY datetime DESC LIMIT 1")
     Devices findPump2(@Param("station") String station);
 
     @Select("SELECT * FROM devices WHERE station = #{station} AND device = 'Pump 3' ORDER BY id DESC LIMIT 1")
@@ -60,6 +61,9 @@ public interface DeviceMapper {
     @Insert("INSERT INTO devices (station, datetime, device, status, level, inletpressure, outletpressure) VALUES (#{station} , #{datetime}, #{device}, #{status}, #{level}, #{inletpressure}, #{outletpressure})")
     void saveDeviceData(@Param("station") String station,@Param("datetime") String datetime, @Param("device") String device, @Param("status") String status, @Param("level") int level, @Param("inletpressure") double inletpressure, @Param("outletpressure") double outletpressure);
     //void insertUser(@Param("name") String name, @Param("email") String email);
+
+    @Select("SELECT * FROM onerowdevices WHERE station1 = #{station} ORDER BY id DESC LIMIT 1")
+    OneRowDevices findOneRowByStation(@Param("station") String station);
 
 
 }
