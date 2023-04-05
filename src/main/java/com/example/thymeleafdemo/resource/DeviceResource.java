@@ -405,93 +405,47 @@ double outletpressure = (double) jsonMap.get("outletpressure");
         try{
             JSONArray jsonArray = new JSONArray(str);
             try{
+                String[] station = new String[6];
+                String[] datetime = new String[6];
+                String[] device = new String[6];
+                String[] status = new String[6];
+                int[] level = new int[6];
+                double[] inletpressure = new double[6];
+                double[] outletpressure = new double[6];
+
+
                    //System.out.println(data.getFirst("Station"));
                      // Iterate over the JSON array and extract the values
                     for (int i = 0; i < jsonArray.length(); i++) {
+                        int j = i + 1;
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String station1 = jsonObject.getString("station1");
-                        String datetime1 = jsonObject.getString("datetime1");
-                        String datetime2 = jsonObject.getString("datetime2");
-                        String datetime3  = jsonObject.getString("datetime3");
-                        String datetime4  = jsonObject.getString("datetime4");
-                        String datetime5  = jsonObject.getString("datetime5");
-                        String datetime6  = jsonObject.getString("datetime6");
+                        station[i] = jsonObject.getString("station" + j);
+                        datetime[i] = jsonObject.getString("datetime" + j);
+                        //String datetime2 = jsonObject.getString("datetime" + i+1);
+                        //String datetime3  = jsonObject.getString("datetime3");
+                        //String datetime4  = jsonObject.getString("datetime4");
+                        //String datetime5  = jsonObject.getString("datetime5");
+                        //String datetime6  = jsonObject.getString("datetime6");
                         LocalDateTime now = LocalDateTime.now();
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
                         String newDate = now.format(formatter);
-                        if(datetime1.equals("") || datetime1 == null) {
+                        if(datetime[i].equals("") || datetime[i] == null) {
                           
-                            datetime1 = newDate;
+                            datetime[i] = newDate;
                           
 
-                        }
-                        if(datetime2.equals("") || datetime2 == null) {
-                            datetime2 = newDate;
-
-                        }
-                        if(datetime3.equals("") || datetime3 == null) {
-                            datetime3 = newDate;
-
-                        }
-
-                        if(datetime4.equals("") || datetime4 == null) {
-                            datetime4 = newDate;
-
-                        }
-                        if(datetime5.equals("") || datetime5 == null) {
-                            datetime5 = newDate;
-
-                        }
-                        if(datetime6.equals("") || datetime6 == null) {
-                            datetime6 = newDate;
-
-                        }
-                   
-                        String device1 = jsonObject.getString("device1");
-                        String status1 = jsonObject.getString("status1");
-                        int level1 = jsonObject.getInt("level1");
-                        double inletpressure1 = jsonObject.getDouble("inletpressure1");
-                        double outletpressure1 = jsonObject.getDouble("outletpressure1");
-
+                        }        
+                        //String device1 = jsonObject.getString("device1");
+                        //String status1 = jsonObject.getString("status1");
+                        //int level1 = jsonObject.getInt("level1");
+                        //double inletpressure1 = jsonObject.getDouble("inletpressure1");
+                        //double outletpressure1 = jsonObject.getDouble("outletpressure1");
+                        device[i] = jsonObject.getString("device" + j);
+                        status[i] = jsonObject.getString("status" + j);
+                        level[i] = jsonObject.getInt("level" + j);
+                        inletpressure[i] = jsonObject.getDouble("inletpressure" + j);
+                        outletpressure[i] = jsonObject.getDouble("outletpressure" +j);
                         //
-                        String station2 = jsonObject.getString("station2");
-                        String device2 = jsonObject.getString("device2");
-                        String status2 = jsonObject.getString("status2");
-                        int level2 = jsonObject.getInt("level2");
-                        double inletpressure2 = jsonObject.getDouble("inletpressure2");
-                        double outletpressure2 = jsonObject.getDouble("outletpressure2");
-
-
-                        String station3 = jsonObject.getString("station3");
-                        String device3 = jsonObject.getString("device3");
-                        String status3 = jsonObject.getString("status3");
-                        int level3 = jsonObject.getInt("level3");
-                        double inletpressure3 = jsonObject.getDouble("inletpressure3");
-                        double outletpressure3 = jsonObject.getDouble("outletpressure3");
-
-
-                        String station4 = jsonObject.getString("station4");
-                        String device4 = jsonObject.getString("device4");
-                        String status4 = jsonObject.getString("status4");
-                        int level4 = jsonObject.getInt("level4");
-                        double inletpressure4 = jsonObject.getDouble("inletpressure4");
-                        double outletpressure4 = jsonObject.getDouble("outletpressure4");
-
-
-                        String station5 = jsonObject.getString("station5");
-                        String device5 = jsonObject.getString("device5");
-                        String status5 = jsonObject.getString("status5");
-                        int level5 = jsonObject.getInt("level5");
-                        double inletpressure5 = jsonObject.getDouble("inletpressure5");
-                        double outletpressure5 = jsonObject.getDouble("outletpressure5");
-
-
-                        String station6 = jsonObject.getString("station6");
-                        String device6 = jsonObject.getString("device6");
-                        String status6 = jsonObject.getString("status6");
-                        int level6  = jsonObject.getInt("level6");
-                        double inletpressure6 = jsonObject.getDouble("inletpressure6");
-                        double outletpressure6 = jsonObject.getDouble("outletpressure6");
                         //String device = jsonObject.getString("Device");
                         //String datetime = jsonObject.getString("Date Time");
                         //if(datetime.equals("") || datetime == null) {
@@ -508,13 +462,14 @@ double outletpressure = (double) jsonMap.get("outletpressure");
                         //System.out.println(name +  " " + device+ " " + datetime + " " + status + " " + Integer.toString(level) + " " + inletpressure + " " + outletpressure);
                         // Do something with the extracted values
                         //System.out.println("Name: " + name + ", Age: " + age);
-                        try{
-                            //deviceMapper.saveDeviceData(name, datetime, device, status, level, inletpressure, outletpressure);
-                            deviceMapper.saveRowData(station1, datetime1, device1, status1,level1, inletpressure1, outletpressure1, station2, datetime2, device2, status2, level2, inletpressure2, outletpressure2, station3, datetime3, device3,status3 ,level3 , inletpressure3, outletpressure3, station4, datetime4, device4, status4, level4, inletpressure4, outletpressure4, station5, datetime5, device5, status5, level5, inletpressure5, outletpressure5, station6, datetime6,device6, status6, level6, inletpressure6, outletpressure6);
-                        }catch (Exception e){
-                             System.out.println(e);
-                            return  e + " . SQL insert problem. Check SQL syntax";
-                        }
+                  
+                    }
+                    try{
+                        //deviceMapper.saveDeviceData(name, datetime, device, status, level, inletpressure, outletpressure);
+                        deviceMapper.saveRowData(station[0], datetime[0], device[0], status[0],level[0], inletpressure[0], outletpressure[0], station[1], datetime[1], device[1], status[1], level[1], inletpressure[1], outletpressure[1], station[2], datetime[2], device[2],status[2] ,level[2] , inletpressure[2], outletpressure[2], station[3], datetime[3], device[3], status[3], level[3], inletpressure[3], outletpressure[3], station[4], datetime[4], device[4], status[4], level[4], inletpressure[4], outletpressure[4], station[5], datetime[5],device[5], status[5], level[5], inletpressure[5], outletpressure[5]);
+                    }catch (Exception e){
+                         System.out.println(e);
+                        return  e + " . SQL insert problem. Check SQL syntax";
                     }
                     return "200 Success Insert SQL";
 

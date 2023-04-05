@@ -80,6 +80,12 @@ CREATE TABLE `onerowdevices` (
   `outletpressure6` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+ALTER TABLE `onerowdevices`
+  ADD PRIMARY KEY (`id`);
+
+
+
 --
 -- Dumping data for table `onerowdevices`
 --
@@ -105,11 +111,22 @@ Output:
 
 Make accordingly and follow requirement:
 
+[{"Station" : "Station 1", "Date Time" : "2023-04-05 09:32:34.0", "Device" : "Suction Tank" , "Status" : "Ok" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : "Station 1", "Date Time" : "2023-04-05 09:32:34.0", "Device" : "Service Tank" , "Status" : "Ok" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : "Station 1", "Date Time" : "2023-04-04 17:02:27.0", "Device" : "Pump 1" , "Status" : "Ok" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : "Station 1", "Date Time" : "2023-04-04 17:02:31.0", "Device" : "Pump 2" , "Status" : "Bad" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : "Station 1", "Date Time" : "2023-04-04 17:02:38.0", "Device" : "Pump 4" , "Status" : "Ok" , "Level" : 0 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : "Station 1", "Date Time" : "2023-04-05 21:56:43.0", "Device" : "null" , "Status" : "null" , "Level" : 0 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}]
+
+
+____________________________________________________________________________________________________________________________________
 
 
 POST METHOD:
 
-[{"station1" : "Station 1", "datetime1" : "2023-04-05 09:32:34.0", "device1" : "Suction Tank" , "status1" : "Ok" , "level1" : 25 , "inletpressure1" : 0.0 , "outletpressure1" : 0.0}, {"station2" : Station 1", "datetime2" : "2023-04-05 09:32:34.0", "device2" : "Service Tank" , "status2" : "Ok" , "level2" : 25 , "inletpressure2" : 0.0 , "outletpressure2" : 0.0}, {"station3" : Station 1", "datetime3" : "2023-04-04 17:02:27.0", "device3" : "Pump 1" , "status3" : "Ok" , "level1" : 25 , "inletpressure3" : 0.0 , "outletpressure3" : 0.0}, {"station4" : Station 1", "datetime4" : "2023-04-04 17:02:31.0", "device4" : "Pump 2" , "status4" : "Bad" , "level4" : 25 , "inletpressure4" : 0.0 , "outletpressure4" : 0.0}, {"station5" : Station 1", "datetime5" : "2023-04-04 17:02:38.0", "device5" : "Pump 4" , "status5" : "Ok" , "level5" : 0 , "inletpressure5" : 0.0 , "outletpressure5" : 0.0}, {"station6" : Station 1", "datetime6" : "null", "device6" : "null" , "status6" : "null" , "level6" : 0 , "inletpressure6" : 0.0 , "outletpressure6" : 0.0}]
+http://localhost:8081/device/submitRow
+
+[{"station1" : "Station 1", "datetime1" : "2023-04-05 09:32:34.0", "device1" : "Suction Tank" , "status1" : "Ok" , "level1" : 25 , "inletpressure1" : 0.0 , "outletpressure1" : 0.0}, {"station2" : "Station 1", "datetime2" : "2023-04-05 09:32:34.0", "device2" : "Service Tank" , "status2" : "Ok" , "level2" : 25 , "inletpressure2" : 0.0 , "outletpressure2" : 0.0}, {"station3" : "Station 1", "datetime3" : "2023-04-04 17:02:27.0", "device3" : "Pump 1" , "status3" : "Ok" , "level3" : 25 , "inletpressure3" : 0.0 , "outletpressure3" : 0.0}, {"station4" : "Station 1", "datetime4" : "2023-04-04 17:02:31.0", "device4" : "Pump 2" , "status4" : "Bad" , "level4" : 25 , "inletpressure4" : 0.0 , "outletpressure4" : 0.0}, {"station5" : "Station 1", "datetime5" : "2023-04-04 17:02:38.0", "device5" : "Pump 4" , "status5" : "Ok" , "level5" : 0 , "inletpressure5" : 0.0 , "outletpressure5" : 0.0}, {"station6" : "Station 1", "datetime6" : "", "device6" : "null" , "status6" : "null" , "level6" : 0 , "inletpressure6" : 0.0 , "outletpressure6" : 0.0}]
+
+Response:
+
+200 Success Insert SQL
+
 _______________________________________________________________________________________________________________
 
 Version 1 API
