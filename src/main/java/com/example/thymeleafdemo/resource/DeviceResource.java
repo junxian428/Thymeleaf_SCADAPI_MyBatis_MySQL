@@ -361,6 +361,180 @@ double outletpressure = (double) jsonMap.get("outletpressure");
         "}]";
     }
     // In order to make requirement need to parse one by one:
+    // Multiple Rows 
+    @PostMapping(value = "/submitRow", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String saveOneRowMultiValueForm(@RequestBody MultiValueMap<String, String> formData) {
+        MultiValueMap<String, String> data = formData;
+        //System.out.println(data);
+        //System.out.println("_______________");
+        //
+        // Convert MultiValueMap into String
+        // For the purpose easy to extract the data
+        // Documentation 
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, List<String>> entry : data.entrySet()) {
+            String key = entry.getKey();
+            List<String> values = entry.getValue();
+            for (String value : values) {
+                sb.append(key).append("=").append(value).append("&");
+            }
+        }
+        sb.setLength(sb.length() - 1); // remove last "&" character
+        String str = sb.toString();
+        
+        //System.out.println(str);
+        str = str.substring(0, str.length() - 1);
+        //String substr = str.substring(489, str.length());
+
+        //System.out.println(substr);
+
+        //System.out.println("---------------------");
+        //System.out.println(str);
+        // 
+        /*
+         * 
+         * 
+         * [{"Station" : "Station 1", "Date Time" : "2023-04-04 17:02:13.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, 
+         * {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:02.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:27.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, 
+         * {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:31.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:38.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0},
+         *  {"Station" : Station 1", "Date Time" : "null" , "Status" : "null" , "Level" : 0 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}]=
+         */
+        // The last character have = so we need to remove it 
+        // Extract Data Step
+        //String jsonArrayString = "[{'name': 'John', 'age': 30}, {'name': 'Mary','age': 25},{ 'name': 'Peter','age': 40}]";
+        try{
+            JSONArray jsonArray = new JSONArray(str);
+            try{
+                   //System.out.println(data.getFirst("Station"));
+                     // Iterate over the JSON array and extract the values
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String station1 = jsonObject.getString("station1");
+                        String datetime1 = jsonObject.getString("datetime1");
+                        String datetime2 = jsonObject.getString("datetime2");
+                        String datetime3  = jsonObject.getString("datetime3");
+                        String datetime4  = jsonObject.getString("datetime4");
+                        String datetime5  = jsonObject.getString("datetime5");
+                        String datetime6  = jsonObject.getString("datetime6");
+                        LocalDateTime now = LocalDateTime.now();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+                        String newDate = now.format(formatter);
+                        if(datetime1.equals("") || datetime1 == null) {
+                          
+                            datetime1 = newDate;
+                          
+
+                        }
+                        if(datetime2.equals("") || datetime2 == null) {
+                            datetime2 = newDate;
+
+                        }
+                        if(datetime3.equals("") || datetime3 == null) {
+                            datetime3 = newDate;
+
+                        }
+
+                        if(datetime4.equals("") || datetime4 == null) {
+                            datetime4 = newDate;
+
+                        }
+                        if(datetime5.equals("") || datetime5 == null) {
+                            datetime5 = newDate;
+
+                        }
+                        if(datetime6.equals("") || datetime6 == null) {
+                            datetime6 = newDate;
+
+                        }
+                   
+                        String device1 = jsonObject.getString("device1");
+                        String status1 = jsonObject.getString("status1");
+                        int level1 = jsonObject.getInt("level1");
+                        double inletpressure1 = jsonObject.getDouble("inletpressure1");
+                        double outletpressure1 = jsonObject.getDouble("outletpressure1");
+
+                        //
+                        String station2 = jsonObject.getString("station2");
+                        String device2 = jsonObject.getString("device2");
+                        String status2 = jsonObject.getString("status2");
+                        int level2 = jsonObject.getInt("level2");
+                        double inletpressure2 = jsonObject.getDouble("inletpressure2");
+                        double outletpressure2 = jsonObject.getDouble("outletpressure2");
+
+
+                        String station3 = jsonObject.getString("station3");
+                        String device3 = jsonObject.getString("device3");
+                        String status3 = jsonObject.getString("status3");
+                        int level3 = jsonObject.getInt("level3");
+                        double inletpressure3 = jsonObject.getDouble("inletpressure3");
+                        double outletpressure3 = jsonObject.getDouble("outletpressure3");
+
+
+                        String station4 = jsonObject.getString("station4");
+                        String device4 = jsonObject.getString("device4");
+                        String status4 = jsonObject.getString("status4");
+                        int level4 = jsonObject.getInt("level4");
+                        double inletpressure4 = jsonObject.getDouble("inletpressure4");
+                        double outletpressure4 = jsonObject.getDouble("outletpressure4");
+
+
+                        String station5 = jsonObject.getString("station5");
+                        String device5 = jsonObject.getString("device5");
+                        String status5 = jsonObject.getString("status5");
+                        int level5 = jsonObject.getInt("level5");
+                        double inletpressure5 = jsonObject.getDouble("inletpressure5");
+                        double outletpressure5 = jsonObject.getDouble("outletpressure5");
+
+
+                        String station6 = jsonObject.getString("station6");
+                        String device6 = jsonObject.getString("device6");
+                        String status6 = jsonObject.getString("status6");
+                        int level6  = jsonObject.getInt("level6");
+                        double inletpressure6 = jsonObject.getDouble("inletpressure6");
+                        double outletpressure6 = jsonObject.getDouble("outletpressure6");
+                        //String device = jsonObject.getString("Device");
+                        //String datetime = jsonObject.getString("Date Time");
+                        //if(datetime.equals("") || datetime == null) {
+                        //    LocalDateTime now = LocalDateTime.now();
+                        //    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+                        //    String newDate = now.format(formatter);
+                        //    datetime = newDate;
+                        //}
+                        //String status = jsonObject.getString("Status");
+                        //int level = jsonObject.getInt("Level");
+                        //double inletpressure = jsonObject.getDouble("Inlet Pressure");
+                        //double outletpressure = jsonObject.getDouble("Outlet Pressure");
+                        //int age = jsonObject.getInt("age");
+                        //System.out.println(name +  " " + device+ " " + datetime + " " + status + " " + Integer.toString(level) + " " + inletpressure + " " + outletpressure);
+                        // Do something with the extracted values
+                        //System.out.println("Name: " + name + ", Age: " + age);
+                        try{
+                            //deviceMapper.saveDeviceData(name, datetime, device, status, level, inletpressure, outletpressure);
+                            deviceMapper.saveRowData(station1, datetime1, device1, status1,level1, inletpressure1, outletpressure1, station2, datetime2, device2, status2, level2, inletpressure2, outletpressure2, station3, datetime3, device3,status3 ,level3 , inletpressure3, outletpressure3, station4, datetime4, device4, status4, level4, inletpressure4, outletpressure4, station5, datetime5, device5, status5, level5, inletpressure5, outletpressure5, station6, datetime6,device6, status6, level6, inletpressure6, outletpressure6);
+                        }catch (Exception e){
+                             System.out.println(e);
+                            return  e + " . SQL insert problem. Check SQL syntax";
+                        }
+                    }
+                    return "200 Success Insert SQL";
+
+            }catch (Exception e){
+                return e + " Error during parse data";
+
+            }
+        } catch(Exception e){
+            System.out.println(e);
+            return e + " . Probably your json file is not accurate. Please check your post data request";
+        }
+
+     
+
+
+        // Process the form data here
+       
+
+
+    }
   
 
 
