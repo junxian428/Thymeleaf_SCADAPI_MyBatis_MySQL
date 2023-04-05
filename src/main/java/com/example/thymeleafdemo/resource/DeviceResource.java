@@ -278,9 +278,87 @@ System.out.println(station + " " + device2 + " " + status +  " " + Integer.toStr
       */
 
     @GetMapping("row/{parameter}")
-    public OneRowDevices getDataBasedRow(@PathVariable("parameter") String parameter){
-       return deviceMapper.findOneRowByStation(parameter);
-   
+    public String getDataBasedRow(@PathVariable("parameter") String parameter){
+        OneRowDevices rowDevices = new OneRowDevices();
+        rowDevices = deviceMapper.findOneRowByStation(parameter);
+        String station1 = rowDevices.getStation1();
+        Timestamp dateTime1 = rowDevices.getDatetime1();
+        String device1 = rowDevices.getDevice1();
+        String status1 = rowDevices.getStatus1();
+        int level1 = rowDevices.getLevel1();
+        double inletpressure1 = rowDevices.getInletpressure1();
+        double outletpressure1 = rowDevices.getOutletpressure1(); 
+
+        String station2 = rowDevices.getStation2();
+        Timestamp dateTime2 = rowDevices.getDatetime2();
+        String device2 = rowDevices.getDevice2();
+        String status2 = rowDevices.getStatus2();
+        int level2 = rowDevices.getLevel2();
+        double inletpressure2 = rowDevices.getInletpressure2();
+        double outletpressure2 = rowDevices.getOutletpressure2(); 
+
+        String station3 = rowDevices.getStation3();
+        Timestamp dateTime3 = rowDevices.getDatetime3();
+        String device3 = rowDevices.getDevice3();
+        String status3 = rowDevices.getStatus3();
+        int level3 = rowDevices.getLevel3();
+        double inletpressure3 = rowDevices.getInletpressure3();
+        double outletpressure3 = rowDevices.getOutletpressure3(); 
+
+        String station4 = rowDevices.getStation4();
+        Timestamp dateTime4 = rowDevices.getDatetime4();
+        String device4 = rowDevices.getDevice4();
+        String status4 = rowDevices.getStatus4();
+        int level4 = rowDevices.getLevel4();
+        double inletpressure4 = rowDevices.getInletpressure4();
+        double outletpressure4 = rowDevices.getOutletpressure4(); 
+
+        String station5 = rowDevices.getStation5();
+        Timestamp dateTime5 = rowDevices.getDatetime5();
+        String device5 = rowDevices.getDevice5();
+        String status5 = rowDevices.getStatus5();
+        int level5 = rowDevices.getLevel5();
+        double inletpressure5 = rowDevices.getInletpressure5();
+        double outletpressure5 = rowDevices.getOutletpressure5(); 
+
+        String station6 = rowDevices.getStation6();
+        Timestamp dateTime6 = rowDevices.getDatetime6();
+        String device6 = rowDevices.getDevice6();
+        String status6 = rowDevices.getStatus6();
+        int level6 = rowDevices.getLevel6();
+        double inletpressure6 = rowDevices.getInletpressure6();
+        double outletpressure6 = rowDevices.getOutletpressure6(); 
+        /*
+
+String station = (String) jsonMap.get("station");
+final String device2 = (String) jsonMap.get("device");
+String status = (String) jsonMap.get("status");
+int level = (int) jsonMap.get("level");
+double inletpressure = (double) jsonMap.get("inletpressure");
+double outletpressure = (double) jsonMap.get("outletpressure");
+
+        */       
+        //System.out.println(station1);
+        
+        return "[{\"Station\" : \""  + parameter + "\", \"Date Time\" : \"" + dateTime1  + "\", \"Device\" : \"" + device1 + "\" , \"Status\" : \""  + status1
+        + "\" , \"Level\" : " + level1 + " , \"Inlet Pressure\" : " + inletpressure1 + 
+        " , \"Outlet Pressure\" : " + outletpressure1 
+        + "}, {\"Station\" : \"" + parameter +  "\", \"Date Time\" : \"" + dateTime2  + "\", \"Device\" : \"" + device2  + "\" , \"Status\" : \""  + status2
+        + "\" , \"Level\" : " +  level2 + " , \"Inlet Pressure\" : " + inletpressure2 + 
+        " , \"Outlet Pressure\" : " + outletpressure2 + 
+        "}, {\"Station\" : \"" + parameter +  "\", \"Date Time\" : \"" + dateTime3  + "\", \"Device\" : \"" + device3 + "\" , \"Status\" : \""  + status3
+        + "\" , \"Level\" : " + level3 + " , \"Inlet Pressure\" : " + inletpressure3 + 
+        " , \"Outlet Pressure\" : " + outletpressure3 
+        +  "}, {\"Station\" : \"" + parameter +  "\", \"Date Time\" : \"" + dateTime4  + "\", \"Device\" : \"" + device4  + "\" , \"Status\" : \""  + status4
+        + "\" , \"Level\" : " + level4 + " , \"Inlet Pressure\" : " + inletpressure4 + 
+        " , \"Outlet Pressure\" : " + outletpressure4 + 
+        "}, {\"Station\" : \"" + parameter +  "\", \"Date Time\" : \"" + dateTime5  + "\", \"Device\" : \"" + device5  + "\" , \"Status\" : \""  + status5
+        + "\" , \"Level\" : " + level5 + " , \"Inlet Pressure\" : " + inletpressure5 + 
+        " , \"Outlet Pressure\" : " + outletpressure5 +
+        "}, {\"Station\" : \"" + parameter +  "\", \"Date Time\" : \"" + dateTime6  + "\", \"Device\" : \"" + device6  + "\" , \"Status\" : \""  + status6
+        + "\" , \"Level\" : " + level6 + " , \"Inlet Pressure\" : " + inletpressure6 + 
+        " , \"Outlet Pressure\" : " + outletpressure6  +
+        "}]";
     }
     // In order to make requirement need to parse one by one:
   
