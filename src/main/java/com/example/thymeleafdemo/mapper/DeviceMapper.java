@@ -58,7 +58,8 @@ public interface DeviceMapper {
 
     //void insertDevice(Devices devices);
     @Insert("INSERT INTO devices (station, datetime, device, status, level, inletpressure, outletpressure) VALUES (#{station} , #{datetime}, #{device}, #{status}, #{level}, #{inletpressure}, #{outletpressure})")
-    void saveDeviceData(@Param("station") String station,@Param("datetime") LocalDateTime localDateTime, @Param("device") String device, @Param("status") String status, @Param("level") int level, @Param("inletpressure") double inletpressure, @Param("outletpressure") double outletpressure);
+    void saveDeviceData(@Param("station") String station,@Param("datetime") String datetime, @Param("device") String device, @Param("status") String status, @Param("level") int level, @Param("inletpressure") double inletpressure, @Param("outletpressure") double outletpressure);
     //void insertUser(@Param("name") String name, @Param("email") String email);
+
 
 }

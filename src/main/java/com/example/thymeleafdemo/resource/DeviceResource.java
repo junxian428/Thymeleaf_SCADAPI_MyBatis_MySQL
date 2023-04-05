@@ -2,6 +2,7 @@ package com.example.thymeleafdemo.resource;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,8 @@ import com.example.thymeleafdemo.model.Devices;
 import com.example.thymeleafdemo.service.DeviceService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 @RestController
 @RequestMapping("/device")
@@ -65,23 +68,22 @@ public class DeviceResource {
         Devices Pump4 = new Devices();
         Pump3 = deviceMapper.findPump4(parameter);
 
-
-        return "[{\"Station\" : \""  + parameter + "\", \"Date Time\" : \"" + SuctionTank.getDatetime() + "\" , \"Status\" : \""  + SuctionTank.getStatus() 
+        return "[{\"Station\" : \""  + parameter + "\", \"Date Time\" : \"" + SuctionTank.getDatetime()  + "\", \"Device\" : \"" + SuctionTank.getDevice() + "\" , \"Status\" : \""  + SuctionTank.getStatus() 
         + "\" , \"Level\" : " + SuctionTank.getLevel() + " , \"Inlet Pressure\" : " + SuctionTank.getInletpressure() + 
         " , \"Outlet Pressure\" : " + SuctionTank.getOutletpressure() 
-        + "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + ServiceTank.getDatetime() + "\" , \"Status\" : \""  + ServiceTank.getStatus() 
+        + "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + ServiceTank.getDatetime()  + "\", \"Device\" : \"" + ServiceTank.getDevice()  + "\" , \"Status\" : \""  + ServiceTank.getStatus() 
         + "\" , \"Level\" : " + ServiceTank.getLevel() + " , \"Inlet Pressure\" : " + ServiceTank.getInletpressure() + 
         " , \"Outlet Pressure\" : " + ServiceTank.getOutletpressure() + 
-        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump1.getDatetime() + "\" , \"Status\" : \""  + Pump1.getStatus() 
+        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump1.getDatetime()  + "\", \"Device\" : \"" + Pump1.getDevice() + "\" , \"Status\" : \""  + Pump1.getStatus() 
         + "\" , \"Level\" : " + Pump1.getLevel() + " , \"Inlet Pressure\" : " + Pump1.getInletpressure() + 
         " , \"Outlet Pressure\" : " + Pump1.getOutletpressure() 
-        +  "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump2.getDatetime() + "\" , \"Status\" : \""  + Pump2.getStatus() 
+        +  "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump2.getDatetime()  + "\", \"Device\" : \"" + Pump2.getDevice()  + "\" , \"Status\" : \""  + Pump2.getStatus() 
         + "\" , \"Level\" : " + Pump2.getLevel() + " , \"Inlet Pressure\" : " + Pump2.getInletpressure() + 
         " , \"Outlet Pressure\" : " + Pump2.getOutletpressure()  + 
-        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump3.getDatetime() + "\" , \"Status\" : \""  + Pump3.getStatus() 
+        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump3.getDatetime()  + "\", \"Device\" : \"" + Pump3.getDevice()  + "\" , \"Status\" : \""  + Pump3.getStatus() 
         + "\" , \"Level\" : " + Pump3.getLevel() + " , \"Inlet Pressure\" : " + Pump3.getInletpressure() + 
         " , \"Outlet Pressure\" : " + Pump3.getOutletpressure()  +
-        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump4.getDatetime() + "\" , \"Status\" : \""  + Pump4.getStatus() 
+        "}, {\"Station\" : " + parameter +  "\", \"Date Time\" : \"" + Pump4.getDatetime()  + "\", \"Device\" : \"" + Pump4.getDevice()  + "\" , \"Status\" : \""  + Pump4.getStatus() 
         + "\" , \"Level\" : " + Pump4.getLevel() + " , \"Inlet Pressure\" : " + Pump4.getInletpressure() + 
         " , \"Outlet Pressure\" : " + Pump4.getOutletpressure()  +
         "}]";
@@ -96,26 +98,27 @@ public class DeviceResource {
        //return "Received Parameter " + parameter;
    }
 
+   // Submit One value to be saved
 
-    @PostMapping(value = "/submitForm", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String submitForm(@RequestBody MultiValueMap<String, String> formData) {
-        // Process the form data here
-        // ...
+   @PostMapping(value = "/submitForm", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+   public String submitForm(@RequestBody MultiValueMap<String, String> formData) {
+       // Process the form data here
+       // ...
 
-        try{
-       //     deviceMapper.insertDevice(formData);
-            //System.out.println(formData);
-            MultiValueMap<String, String> data = formData;
-            System.out.println(data);
-            String device = formData.getFirst("device");
-            System.out.println(device);
+       try{
+      //     deviceMapper.insertDevice(formData);
+           //System.out.println(formData);
+           MultiValueMap<String, String> data = formData;
+           System.out.println(data);
+           String device = formData.getFirst("device");
+           System.out.println(device);
 
-            //
+           //
 
-            String jsonData = data.toString();
-            String subJson = jsonData.substring(1);
+           String jsonData = data.toString();
+           String subJson = jsonData.substring(1);
 
-            ObjectMapper objectMapper = new ObjectMapper();
+           ObjectMapper objectMapper = new ObjectMapper();
 String jsonString = "{\"device\":\"Suction tank\",\"status\":\"Hi\",\"level\":25,\"inletpressure\":0.0,\"outletpressure\":0.0}=[]";
 Map<String, Object> jsonMap = objectMapper.readValue(subJson, new TypeReference<Map<String, Object>>(){});
 
@@ -130,50 +133,133 @@ System.out.println(station + " " + device2 + " " + status +  " " + Integer.toStr
 
 
 
-            //deviceDataService.saveDeviceData(formData);
-            LocalDateTime localDateTime = LocalDateTime.now();
-            // void saveDeviceData
-           // device.savedDeviceData(localDateTime, device2, status, level, inletpressure, outletpressure);
-           try{
-            deviceMapper.saveDeviceData(station, localDateTime, device2, status, level, inletpressure, outletpressure);
-            System.out.println("saving");
-            return "Form submitted successfully! Your data is uploaded... Device: " + device2  ;
+           //deviceDataService.saveDeviceData(formData);
+           LocalDateTime localDateTime = LocalDateTime.now();
+           // void saveDeviceData
+          // device.savedDeviceData(localDateTime, device2, status, level, inletpressure, outletpressure);
+          try{
+           //deviceMapper.saveDeviceData(station, localDateTime, device2, status, level, inletpressure, outletpressure);
+           System.out.println("saving");
+           return "Form submitted successfully! Your data is uploaded... Device: " + device2  ;
 
-           }catch(Exception e){
-                System.out.println(e);
-                return "Your error code: " +e;
-           }
+          }catch(Exception e){
+               System.out.println(e);
+               return "Your error code: " +e;
+          }
 
-            
-        }catch(Exception e){
-            System.out.println(e);
-            return "Fail to submit";
+           
+       }catch(Exception e){
+           System.out.println(e);
+           return "Fail to submit";
+       }
+   }
+   
+   // Submit Multiple Values to be saved
+   /*
+    * 
+    [{"Station" : "Station 1", "Date Time" : "2023-04-04 17:02:13.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, 
+    {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:02.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0},
+    {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:27.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, 
+    {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:31.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, 
+    {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:38.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, 
+    {"Station" : Station 1", "Date Time" : "null" , "Status" : "null" , "Level" : 0 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}]
+
+
+    */
+
+    @PostMapping(value = "/submitMultiForm", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String saveMultiValueForm(@RequestBody MultiValueMap<String, String> formData) {
+        MultiValueMap<String, String> data = formData;
+        //System.out.println(data);
+        //System.out.println("_______________");
+        //
+        // Convert MultiValueMap into String
+        // For the purpose easy to extract the data
+        // Documentation 
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, List<String>> entry : data.entrySet()) {
+            String key = entry.getKey();
+            List<String> values = entry.getValue();
+            for (String value : values) {
+                sb.append(key).append("=").append(value).append("&");
+            }
         }
+        sb.setLength(sb.length() - 1); // remove last "&" character
+        String str = sb.toString();
+        
+        //System.out.println(str);
+        str = str.substring(0, str.length() - 1);
+        //String substr = str.substring(489, str.length());
+
+        //System.out.println(substr);
+
+        //System.out.println("---------------------");
+        //System.out.println(str);
+        // 
+        /*
+         * 
+         * 
+         * [{"Station" : "Station 1", "Date Time" : "2023-04-04 17:02:13.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, 
+         * {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:02.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:27.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, 
+         * {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:31.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}, {"Station" : Station 1", "Date Time" : "2023-04-04 17:02:38.0" , "Status" : "Testing" , "Level" : 25 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0},
+         *  {"Station" : Station 1", "Date Time" : "null" , "Status" : "null" , "Level" : 0 , "Inlet Pressure" : 0.0 , "Outlet Pressure" : 0.0}]=
+         */
+        // The last character have = so we need to remove it 
+        // Extract Data Step
+        //String jsonArrayString = "[{'name': 'John', 'age': 30}, {'name': 'Mary','age': 25},{ 'name': 'Peter','age': 40}]";
+        try{
+            JSONArray jsonArray = new JSONArray(str);
+            try{
+                   //System.out.println(data.getFirst("Station"));
+                     // Iterate over the JSON array and extract the values
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String name = jsonObject.getString("Station");
+                        String device = jsonObject.getString("Device");
+                        String datetime = jsonObject.getString("Date Time");
+                        if(datetime.equals("") || datetime == null) {
+                            LocalDateTime now = LocalDateTime.now();
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+                            String newDate = now.format(formatter);
+                            datetime = newDate;
+                        }
+                        String status = jsonObject.getString("Status");
+                        int level = jsonObject.getInt("Level");
+                        double inletpressure = jsonObject.getDouble("Inlet Pressure");
+                        double outletpressure = jsonObject.getDouble("Outlet Pressure");
+                        //int age = jsonObject.getInt("age");
+                        System.out.println(name +  " " + device+ " " + datetime + " " + status + " " + Integer.toString(level) + " " + inletpressure + " " + outletpressure);
+                        // Do something with the extracted values
+                        //System.out.println("Name: " + name + ", Age: " + age);
+                        try{
+                            deviceMapper.saveDeviceData(name, datetime, device, status, level, inletpressure, outletpressure);
+
+                        }catch (Exception e){
+                            System.out.println(e);
+                            return  e + " . SQL insert problem. Check SQL syntax";
+                        }
+                    }
+                    return "200 Success Insert SQL";
+
+            }catch (Exception e){
+                return e + " Error during parse data";
+
+            }
+        } catch(Exception e){
+            System.out.println(e);
+            return e + " . Probably your json file is not accurate. Please check your post data request";
+        }
+
+     
+
+
+        // Process the form data here
+       
+
+
     }
-    
-    @PostMapping("/addDeviceData")
-public void saveDeviceData(@ModelAttribute Devices form) {
-    Devices data = new Devices();
-    try{
-
-    
-    }catch(Exception e){
-        System.out.println(e);
-    }
-
-    // Your code to save the data here
-    // ...
-}
 
 
-
- 
-
-@PostMapping("/addDevice")
-public ResponseEntity<?> addDeviceData(@RequestBody Devices data) {
-    deviceService.saveDeviceData(data);
-    return ResponseEntity.ok().build();
-}
 }
 
 
