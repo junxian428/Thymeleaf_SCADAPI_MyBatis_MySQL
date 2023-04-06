@@ -417,10 +417,10 @@ double outletpressure = (double) jsonMap.get("outletpressure");
                    //System.out.println(data.getFirst("Station"));
                      // Iterate over the JSON array and extract the values
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        int j = i + 1;
+                        //int j = i + 1;
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        station[i] = jsonObject.getString("station" + j);
-                        datetime[i] = jsonObject.getString("datetime" + j);
+                        station[i] = jsonObject.getString("Station");
+                        datetime[i] = jsonObject.getString("Date Time");
                         //String datetime2 = jsonObject.getString("datetime" + i+1);
                         //String datetime3  = jsonObject.getString("datetime3");
                         //String datetime4  = jsonObject.getString("datetime4");
@@ -440,11 +440,11 @@ double outletpressure = (double) jsonMap.get("outletpressure");
                         //int level1 = jsonObject.getInt("level1");
                         //double inletpressure1 = jsonObject.getDouble("inletpressure1");
                         //double outletpressure1 = jsonObject.getDouble("outletpressure1");
-                        device[i] = jsonObject.getString("device" + j);
-                        status[i] = jsonObject.getString("status" + j);
-                        level[i] = jsonObject.getInt("level" + j);
-                        inletpressure[i] = jsonObject.getDouble("inletpressure" + j);
-                        outletpressure[i] = jsonObject.getDouble("outletpressure" +j);
+                        device[i] = jsonObject.getString("Device");
+                        status[i] = jsonObject.getString("Status");
+                        level[i] = jsonObject.getInt("Level");
+                        inletpressure[i] = jsonObject.getDouble("Inlet Pressure");
+                        outletpressure[i] = jsonObject.getDouble("Outlet Pressure");
                         //
                         //String device = jsonObject.getString("Device");
                         //String datetime = jsonObject.getString("Date Time");
